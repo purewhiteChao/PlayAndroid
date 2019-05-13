@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="首页" android:icon="@drawable/select_main_home" android:id="@+id/home_menu"/>
+    <item android:title="知识体系" android:icon="@drawable/select_main_system" android:id="@+id/system_menu"/>
+    <item android:title="公众号" android:icon="@drawable/select_main_wx" android:id="@+id/wx_menu"/>
+    <item android:title="项目" android:icon="@drawable/select_main_project" android:id="@+id/project_menu"/>
+    <item android:title="我的" android:icon="@drawable/select_main_person" android:id="@+id/person_menu"/>
+</menu>
