@@ -28,6 +28,8 @@
         </activity>
         <activity android:name=".view.activity.systemsub.SystemSubActivity"/>
         <activity android:name=".view.activity.collect.CollectActivity"/>
+        <activity android:name=".view.activity.searchdata.SearchDataActivity"/>
+        <activity android:name=".view.activity.search.SearchActivity"/>
     </application>
 
 </manifest>

@@ -1,8 +1,12 @@
 package com.example.playandroid.model.wx;
 
+import android.util.Log;
+
 import com.example.playandroid.base.BaseModel;
 import com.example.playandroid.model.bean.ProjectContentBean;
 import com.example.playandroid.model.bean.ProjectNameBean;
+import com.example.playandroid.model.bean.SearchDataBean;
+import com.example.playandroid.model.bean.SerachHotMsgBean;
 import com.example.playandroid.model.bean.SystemSubBean;
 import com.example.playandroid.model.bean.WxContentBean;
 import com.example.playandroid.model.bean.WxNameBean;
@@ -10,9 +14,14 @@ import com.example.playandroid.model.uri.Uris;
 import com.example.playandroid.model.service.RetrofitService;
 import com.example.playandroid.utils.RetrofitHelper;
 
+import java.io.IOException;
+
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import rx.Observable;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Android Studio.
@@ -83,6 +92,70 @@ public class WxModel extends BaseModel<WxCallBack> {
         String url = "article/list/"+page+"/json?cid="+id;
         Observable<SystemSubBean> systemSub = retrofitService.getSystemSub(url);
         return systemSub;
+    }
+    public Observable<SearchDataBean> getSearchData(String key,int page){
+        Retrofit retrofit = RetrofitHelper.getInstance().initRetrofit(Uris.WANANDROID_URL);
+        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+        Observable<SearchDataBean> searchData = retrofitService.getSearchData(key);
+//        searchData.subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<SearchDataBean>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.i("guochao","SearchPresenterData:OnError:"+e.getMessage());
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(SearchDataBean body) {
+//
+//                            Log.i("guochao",body.getData().getDatas().size()+"");
+//
+//                    }
+//                });
+        return searchData;
+    }
+//    public Observable<SearchDataBean> getSearchData(String key,int page){
+//        Retrofit retrofit = RetrofitHelper.getInstance().initRetrofit(Uris.WANANDROID_URL);
+//        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+//        Observable<ResponseBody> searchData = retrofitService.getSearchData(key);
+//        searchData.subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<ResponseBody>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.i("guochao","SearchPresenterData:OnError:"+e.getMessage());
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(ResponseBody body) {
+//
+//                        try {
+//                            Log.i("guochao",body.string());
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
+//        return null;
+//    }
+
+    public Observable<SerachHotMsgBean> getSearchHotMsg(){
+        Retrofit retrofit = RetrofitHelper.getInstance().initRetrofit(Uris.WANANDROID_URL);
+        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+        Observable<SerachHotMsgBean> searchHot = retrofitService.getSearchHot();
+        return searchHot;
     }
 
 }

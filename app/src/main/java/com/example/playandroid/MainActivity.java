@@ -7,10 +7,12 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 
 import com.example.playandroid.base.BaseActivity;
 import com.example.playandroid.utils.SPUtils;
+import com.example.playandroid.view.activity.search.SearchActivity;
 import com.example.playandroid.view.fragment.home.HomeFragment;
 import com.example.playandroid.view.fragment.person.PersonFragment;
 import com.example.playandroid.view.fragment.project.ProjectFragment;
@@ -45,7 +47,18 @@ public class MainActivity extends BaseActivity {
             bottomnavigationMain.setSelectedItemId(R.id.home_menu);
 
         }
+        initListener();
 
+    }
+
+    private void initListener() {
+        edittextMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initData() {

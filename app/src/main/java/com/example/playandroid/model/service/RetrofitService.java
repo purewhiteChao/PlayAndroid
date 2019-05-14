@@ -5,6 +5,8 @@ import com.example.playandroid.model.bean.AvaterBean;
 import com.example.playandroid.model.bean.HomeRecyclerViewBean;
 import com.example.playandroid.model.bean.ProjectContentBean;
 import com.example.playandroid.model.bean.ProjectNameBean;
+import com.example.playandroid.model.bean.SearchDataBean;
+import com.example.playandroid.model.bean.SerachHotMsgBean;
 import com.example.playandroid.model.bean.SystemBean;
 import com.example.playandroid.model.bean.SystemSubBean;
 import com.example.playandroid.model.bean.WxContentBean;
@@ -17,6 +19,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Url;
 import rx.Observable;
 
@@ -64,4 +67,12 @@ public interface RetrofitService {
 
     @GET
     Observable<SystemSubBean> getSystemSub(@Url String url);
+
+    //https://www.wanandroid.com/article/query/0/json
+    @POST("article/query/0/json")
+    @FormUrlEncoded
+    Observable<SearchDataBean> getSearchData(@Field("k") String key);
+
+    @GET("hotkey/json")
+    Observable<SerachHotMsgBean> getSearchHot();
 }

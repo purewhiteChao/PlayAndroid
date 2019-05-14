@@ -40,7 +40,7 @@ public class CollectTableDao {
     public void deleteDao(String value){
         SQLiteDatabase writableDatabase = mySQLiteHelper.getWritableDatabase();
         try {
-            writableDatabase.delete(CollectTable.TAB_NAME,CollectTable.COL_TITLE, new String[]{value});
+            writableDatabase.execSQL("delete from "+CollectTable.TAB_NAME+" where "+CollectTable.COL_TITLE+" =?",new String[]{value});
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
